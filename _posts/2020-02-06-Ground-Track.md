@@ -15,7 +15,7 @@ Jumping right into it. If we have the following elements; semi-major axis, eccen
 
 The equation <img src="https://render.githubusercontent.com/render/math?math=P = 2\pi\sqrt\dfrac{a^3}{\mu}"> represents the period of our satellite.
 
-```Python3
+```python
 import math
 period = 2 * math.pi * math.sqrt(a^3/mu)
 p_hours = period / 3600
