@@ -13,17 +13,12 @@ In future posts in this series I plan to go into determining these orbital eleme
 
 Jumping right into it. If we have the following elements; semi-major axis, eccentricity, inclination, longitude of the ascending node, and argument of periapsis. These 5 elements are enough to describe an unperturbed orbit of any satellite, artificial or otherwise. Using a 6th element, we can determine where the satellite is on its orbital path.
 
-The equation <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1"> represents the period of our satellite.
+The equation <img src="https://render.githubusercontent.com/render/math?math=P = 2\pi\sqrt\dfrac{a^3}{\mu}"> represents the period of our satellite.
 
 import math
 period = 2 * math.pi * math.sqrt(a^3/mu)
 p_hours = period / 3600
 
 This now gives us our period in seconds. For perspective, we will divide by 3600 to get the answer into the amount of hours our orbit will take. 
-
-Now we can calculate our . 
-
-Where <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">. So, 
-
 
 The inclination value becomes the highest and lowest latitude that the satellite will see. A 0 degree inclination (and sufficient altitude) will be geostationary in nature, keeping pace with the earth. In more practical terms to this exercise, it is the highest and lowest that we will draw our curve onto the earth.
