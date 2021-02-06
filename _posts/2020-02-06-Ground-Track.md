@@ -17,9 +17,7 @@ The equation <img src="https://render.githubusercontent.com/render/math?math=P =
 
 ```Python3
 import math
-
 period = 2 * math.pi * math.sqrt(a^3/mu)
-
 p_hours = period / 3600
 ```
 
