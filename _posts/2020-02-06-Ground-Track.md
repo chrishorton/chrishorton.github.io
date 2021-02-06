@@ -16,7 +16,9 @@ Jumping right into it. If we have the following elements; semi-major axis, eccen
 The equation <img src="https://render.githubusercontent.com/render/math?math=P = 2\pi\sqrt\dfrac{a^3}{\mu}"> represents the period of our satellite.
 
 import math
+
 period = 2 * math.pi * math.sqrt(a^3/mu)
+
 p_hours = period / 3600
 
 This now gives us our period in seconds. For perspective, we will divide by 3600 to get the answer into the amount of hours our orbit will take. 
