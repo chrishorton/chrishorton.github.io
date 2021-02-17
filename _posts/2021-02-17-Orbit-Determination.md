@@ -1,5 +1,5 @@
 ---
 layout: post
-title: Determining a unique orbit from a single radar observation in Python!
+title: Determining unique orbits in Python
 ---
 
