@@ -1,4 +1,4 @@
 ---
 layout: post
-title: Charged Particle simulation in C++!
+title: Charged Particle simulation in C++
 ---
