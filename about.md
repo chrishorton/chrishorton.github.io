@@ -4,11 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hey! I'm Chris and you've found my website.
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Here I plan on posting my adventures programming astrodynamics and simulation, forays into control theory, history of math and physics, and anything else that sparks my interest.
 
 ### Contact me
 
