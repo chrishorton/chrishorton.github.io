@@ -65,13 +65,17 @@ Next, let's get down and dirty and determine a topocentric state vector, pointin
 ![diagram](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/topocentric_coordinat_system.png)
 
 $$ \rho_{S} = - \rho\ cos(El)\ cos(Az) $$
+
 $$ \rho_{E} = \rho\ cos(El)\ sin(Az) $$
+
 $$ \rho_{Z} = \rho\ sin(El) $$
 
 and the velocity relative to the radar observation site:
 
 $$ \dot\rho_{S} = -\dot\rho\ cos(El)\ cos(Az)\ + \rho\ sin(El)\ \dot El\ cos(Az)\ + \rho\ cos(El)\ sin(Az)\ \dot Az $$
+
 $$ \dot\rho_{E} = \dot\rho\ cos(El)\ sin(Az)\ - \rho\ sin(El)\ \dot El\ sin(Az)\ + \rho\ cos(El)\ cos(Az)\ \dot Az $$
+
 $$ \dot\rho_{Z} = \dot\rho\sin(El) + \rho\ cos(El)\dot El $$
 
 ```python
