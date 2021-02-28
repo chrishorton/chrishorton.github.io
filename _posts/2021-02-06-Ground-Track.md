@@ -22,3 +22,7 @@ The equation <img src="https://render.githubusercontent.com/render/math?math=P =
 This now gives us our period in seconds. For perspective, we will divide by 3600 to get the answer into the amount of hours our orbit will take. 
 
 The inclination value becomes the highest and lowest latitude that the satellite will see. A 0 degree inclination (and sufficient altitude) will be geostationary in nature, keeping pace with the earth. In more practical terms to this exercise, it is the highest and lowest that we will draw our curve onto the earth.
+
+
+$$ x = 5 $$
+$$ \rho = 5 $$
