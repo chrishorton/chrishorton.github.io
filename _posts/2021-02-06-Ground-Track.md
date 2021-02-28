@@ -26,3 +26,4 @@ The inclination value becomes the highest and lowest latitude that the satellite
 
 $$ x = 5 $$
 $$ \rho = 5 $$
+\(\rho = 5 \)
