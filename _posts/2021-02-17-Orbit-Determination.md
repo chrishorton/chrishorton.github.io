@@ -6,7 +6,7 @@ category: physics
 
 Determining an orbit from one radar observation was the chapter in Fundamentals of Astrodynamics by Bates, that I flipped to when I took the book off of my grandpa's shelf. I flipped through the introduction to the section, and was fascinated about the Doppler effect. Being experienced only in High School introductory physics at the time, I only knew about the Doppler shift in the context of red/blue and the sound a F1 car made as it zoomed past. Seeing that we could determine an orbit of a satelite all the way out in space with just these basic data points fascinated me, and I sat down and worked my way through the rest of the book. It's been about 3 years since then and I finally felt like I had the calculus and linear algebra skills to implement the projects in the back of the book. So over a weekend, I hacked on the code and algorithms to turn a radar observation into an orbit. 
 
-I plan to make this the first of a series of 5 posts:
+I plan to make this the first in a series of 5 posts:
 
 - Determination from a radar observation
 
@@ -16,9 +16,7 @@ I plan to make this the first of a series of 5 posts:
 
   - Possibly turn this into a project post with a raspberry pi, and a DSLR, determining the orbit of satelites that pass overhead.
 
-- Finally, Improving the accuracy of these preliminary orbits.
-
-For future projects, making it easier to solve the same problem with just 3 position vectors called the Gibbsian method or from optical sightings which is the ultimate goal. I plan to set up a raspberry pi and my DSLR to solve for the orbits of satellites that pass overhead.
+- Finally, how to improve the accuracy of these preliminary orbits.
 
 # The problem
 
