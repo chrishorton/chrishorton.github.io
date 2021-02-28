@@ -64,19 +64,23 @@ Next, let's get down and dirty and determine a topocentric state vector, pointin
 
 ![diagram](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/topocentric_coordinat_system.png)
 
+The position vector of the satellite relative to the radar site: 
+
 $$ \rho_{S} = - \rho\ cos(El)\ cos(Az) $$
 
 $$ \rho_{E} = \rho\ cos(El)\ sin(Az) $$
 
 $$ \rho_{Z} = \rho\ sin(El) $$
 
-and the velocity relative to the radar observation site:
+and the velocity is given by it's derivative:
 
 $$ \dot\rho_{S} = -\dot\rho\ cos(El)\ cos(Az)\ + \rho\ sin(El)\ \dot El\ cos(Az)\ + \rho\ cos(El)\ sin(Az)\ \dot Az $$
 
 $$ \dot\rho_{E} = \dot\rho\ cos(El)\ sin(Az)\ - \rho\ sin(El)\ \dot El\ sin(Az)\ + \rho\ cos(El)\ cos(Az)\ \dot Az $$
 
 $$ \dot\rho_{Z} = \dot\rho\sin(El) + \rho\ cos(El)\dot El $$
+
+The code: 
 
 ```python
     rho_S = -1 * range * math.cos(elevation) * math.cos(azimuth)
@@ -93,6 +97,20 @@ $$ \dot\rho_{Z} = \dot\rho\sin(El) + \rho\ cos(El)\dot El $$
 
     return rho, rho_dot
 ```
+
+Now to truly make this a global state vector of the satelite, we must transform from topocentric, earth's surface, coordinates to geocentric, earth-centered, coordinates. Now if the earth was perfectly spherical that would be as simple as adding an earth radius $$ R $$ to $$ \rho_{Z} $$, the zenith of the observing site, as can be determined visually from the below image.
+
+![geocentric coordinates](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/geocentric_coordinates.png)
+
+Unfortunately, it isn't quite that simple. We defined in the first section a couple variables that tell us about the eccentricity of the earth, we will use that now to compute the radius of the earth at any location, using geodetic latitude. Coordinates on the ellipse can be described using latitude, $$ L $$, the eccentricity, $$ e $$, an angle $$ \theta $$ describing the local sidereal time, more specifically the angle between the observer and the vernal equinox, a height, $$ H $$ above sea level, and the equatorial radius of the earth, $$ a_{e} $$.
+
+$$ x = \left| \frac{ a_{e} }{ \sqrt{1-e^2\ sin^2(L)}}\ +\ H \right|\ cos(L) $$
+
+$$ z = \left| \frac{ a_{e}\ (1-e^2)}{ \sqrt{1-e^2\ sin^2(L)}}\ +\ H \right|\ sin(L) $$
+
+$$ {\bf R} = x\ cos(\theta){\bf I}\ +\ x\ sin(\theta){\bf J}\ +\ z{\bf K} $$
+
+
 
 [1]: https://www.esa.int/Safety_Security/Space_Debris/Scanning_and_observing2
 
