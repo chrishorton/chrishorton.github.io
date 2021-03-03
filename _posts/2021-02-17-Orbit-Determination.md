@@ -81,6 +81,8 @@ $$ \dot\rho_{Z} = \dot\rho\sin(El) + \rho\ cos(El)\dot El $$
 The code: 
 
 ```python
+def compute_position_and_velocity_vectors_topocentric(range, range_rate, elevation, elevation_rate, azimuth, azimuth_rate):    
+
     rho_S = -1 * range * math.cos(elevation) * math.cos(azimuth)
     rho_E = range * math.cos(elevation) * math.sin(azimuth)
     rho_Z = range * math.sin(elevation)
@@ -108,9 +110,52 @@ $$ z = \left| \frac{ a_{e}\ (1-e^2)}{ \sqrt{1-e^2\ sin^2(L)}}\ +\ H \right|\ sin
 
 $$ {\bf R} = x\ cos(\theta){\bf I}\ +\ x\ sin(\theta){\bf J}\ +\ z{\bf K} $$
 
+```python
+def compute_station_coords_ellipsoid(lst_time, lat, elevation_sea_level):
 
+    x = abs(1 / ( math.sqrt(1 - math.pow(eccentricity,2) * math.sin(lat))) + elevation_sea_level) * math.cos(lat)
+    z = abs(1 / ( math.sqrt(1 - math.pow(eccentricity,2) * math.sin(lat))) + elevation_sea_level) * math.sin(lat)
+    R = array([ x * math.cos(lst_time), x * math.sin(lst_time), z])
+    return R
+```
+
+Now that we have our station coordinates, let's set up our transformation matrix so that we can rotate from SEZ to IJK coordinate systems. The SEZ coordinate system is what we originally defined for our topocentric vectors. Now let's dig underground and define a much more universal (or global, since whilst talking about space one can never be too specific ;) ) transformation to the center of the earth.
+
+Euler angles, presented in the transformation matrix below, defined as $$ D $$, can be calculated based on rotating one vector at a time until the proper orientation is reached. [[2]] Using the geometry of our above figures, we use our geodetic latitude, and local sidereal time at the site to rotate our coordinates to a geocentric perspective.
+
+![Euler Angles](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/IJK_Euler%20angles.jpeg)
+
+From this matrix, we can easily define the operations necessary to rotate our coordinate reference frame. Dotting $$ r $$ and $$ D $$, and $$ v $$ and $$ D $$.
+
+With just one more step we arrive at our solution, since the earth is rotating relative to the satellite as well, we must factor this into the velocity. This is given simply by the following:
+
+$$ v = \dot \rho + \omega \times r $$
+
+```python
+def compute_r_v_geocentric(r_topo, v_topo, lat, lst_time, elevation_sea_level):
+    # Here we compute the site coordinates(using the above function), and add them to the topocentric position vector.
+    R = compute_station_coords_ellipsoid(lst_time, lat, elevation_sea_level) 
+    r_topo += R
+    
+    # define transformation matrix
+    rotation_matrix = array([
+        [math.sin(lat) * math.cos(lst_time), -1 * math.sin(lst_time), math.cos(lat) * math.cos(lst_time)],
+        [math.sin(lat) * math.sin(lst_time), math.cos(lst_time), math.cos(lat) * math.sin(lst_time)],
+        [-1 * math.cos(lat), 0, math.sin(lat)]
+    ])
+
+    # convert (3,) array to (1,3) to dot with rotation_matrix
+    rho_3_vector = np.array(r_topo)
+    rho_dot_3_vector = np.array(v_topo)
+
+    r = dot(rotation_matrix, rho_3_vector)
+    rho_dot = dot(rotation_matrix, rho_dot_3_vector)
+
+    v = rho_dot + cross(omega_wE, r)
+```
 
 [1]: https://www.esa.int/Safety_Security/Space_Debris/Scanning_and_observing2
+[2]: https://www.youtube.com/watch?v=2Cwa6hfn2K0
 
 # References
 
@@ -118,3 +163,4 @@ $$ {\bf R} = x\ cos(\theta){\bf I}\ +\ x\ sin(\theta){\bf J}\ +\ z{\bf K} $$
 - [European Space Academy (ESA) Space Debris Radar](https://www.esa.int/Safety_Security/Space_Debris/Scanning_and_observing2)
 - [space observation radar TIRA (Tracking and Imaging Radar)](https://www.fhr.fraunhofer.de/en/the-institute/technical-equipment/Space-observation-radar-TIRA.html)
 - [Axial Precession Youtube](https://www.youtube.com/watch?v=ty9QSiVC2g0)
+- [Euler Angle summary Youtube](https://www.youtube.com/watch?v=2Cwa6hfn2K0)
