@@ -2,7 +2,6 @@
 layout: post
 title: Ground Track of Satelite with orbital elements
 ---
-
 One of the most valuable characteristics of an artificial satellite orbiting earth is it’s ability to pass over large portions of the earth’s surface in a short amount of time. Satellites perform tasks such as global surveillance and mapping, GPS, television, weather, and more, that are vitally important to our modern lives. 
 
 Determining the “ground track” or the path that the satellite traces as it orbits the earth is one of the most useful and important calculations that must be done when working with a satellite. 
@@ -22,7 +21,7 @@ p_hours = period / 3600
 ```
 This now gives us our period in seconds. For perspective, we will divide by 3600 to get the answer into the amount of hours our orbit will take. 
 
-Now we can calculate our . This value will tell us where by the end of the sidereal day, 23 hours, 56 minutes, our satellite will be on the earth (assuming a . The longitude of the ascending node by definition gives us the longitude that we begin our sinusoidal wave from, and , tells us where to stop that line on the end of the first day. 
+Now we can calculate our $$ \Delta n $$. This value will tell us where by the end of the sidereal day, 23 hours, 56 minutes, our satellite will be on the earth. The longitude of the ascending node gives us the longitude that we begin our sinusoidal wave from, and $$ \Delta n $$, tells us where to stop that line on the end of the first day. 
 
 Where $$ P = \dfrac{\Delta n}{15\circ} $$ . So, $$ \Delta n = P \cdot 15\circ $$
 
