@@ -16,7 +16,7 @@ The idea was just as they teach it in class; that for every infinitesimal moment
 
 Below is some code to graph the logistic function for our basic acceleration values. First it grows, exponentially, and then as it nears a maximum value, slows the growth rate.
 
-'''python
+```python
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -37,4 +37,4 @@ plt.plot(x,y)
 plt.show()
 plt.bar(x,y)
 
-'''
+```python
