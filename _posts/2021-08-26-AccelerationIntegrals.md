@@ -37,4 +37,46 @@ plt.plot(x,y)
 plt.show()
 plt.bar(x,y)
 
+```
+
+The first graph is our acceleration curve, and the second is an approximate integral of this curve. Since the area underneath a curve is traditionally found by taking infinitesimal rectangles, I modeled this with bars that fits our curve. Now to find the velocity, we simply take the width of each rectangle and multiply it by the height of the function at that point. **note that there are many different ways to numerically calculate integrals using quadrature that I plan to cover in the future, but for now this satisfies our requirements for a basic intuition*
+
 ```python
+area = 0
+for i in range(accuracy):
+
+    # using the rectangle rule, we evaluate the function at each small step, multiply, and add to a running total
+    e_to_t = (duration/10)/(1 + np.e ** (-.05 * (e_incrementer - duration/2)))
+        
+    area += step_size * (e_to_t)
+    
+    e_incrementer += e_incrementer
+
+
+print(area)
+```
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+data = pd.read_csv('data/accel_data.csv')
+y_accel = data['y']
+x_accel = data['x']
+z_accel = data['z']
+time_series_y = pd.Series(y_accel)
+time_series_x = pd.Series(x_accel)
+time_series_z = pd.Series(z_accel)
+# the results are off by .1 ish... The data looks a lot better like this
+time_series_y = time_series_y.subtract(.1, axis=0)
+```
+
+```python
+velocity = time_series_y.cumsum()
+velocity.plot()
+
+y_accel = y_accel.subtract(.1, axis=0)
+y_accel = y_accel.multiply(1000, axis=0)
+y_accel.plot()
+```
