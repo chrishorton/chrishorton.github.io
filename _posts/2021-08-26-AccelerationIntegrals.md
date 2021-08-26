@@ -34,6 +34,8 @@ plt.show()
 plt.bar(x,y)
 
 ```
+![logistic curve](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/logistic_curve.png)
+
 
 The first graph is our acceleration curve, and the second is an approximate integral of this curve. Since the area underneath a curve is traditionally found by taking infinitesimal rectangles, I modeled this with bars that fits our curve. Now to find the velocity, we simply take the width of each rectangle and multiply it by the height of the function at that point. **note that there are many different ways to numerically calculate integrals using quadrature that I plan to cover in the future, but for now this satisfies our requirements for a basic intuition*
 
