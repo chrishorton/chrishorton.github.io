@@ -3,10 +3,6 @@ layout: post
 title: Integrals from an acceleration graph
 category: physics
 ---
-
-# Integrals to calculate acceleration
-
-
 ## Introduction
 I was introduced to an app on my phone that uses all of the sensors to record interesting physics data. On the train to work the other day I opened up the app to record data from the 3 axes of accelerometers. I've been studying integrals and the intuition that a summed acceleration curve equals the velocity finally hit me.
 
