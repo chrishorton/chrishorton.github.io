@@ -10,7 +10,6 @@ It's so simple but in my first calculus class, we studied that the derivative of
 
 The idea was just as they teach it in class; that for every infinitesimal moment of acceleration, there in turn is some resulting change in velocity. Take for example a quick exponential acceleration graph. What would the velocity be after 5 seconds? For the logistic function $$ \frac { L }{ 1+e^{-k(x-x_0)} } $$
 
-![logistic curve](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/logistic_curve.png)
 
 Below is some code to graph the logistic function for our basic acceleration values. First it grows, exponentially, and then as it nears a maximum value, slows the growth rate.
 
@@ -36,8 +35,8 @@ plt.show()
 plt.bar(x,y)
 
 ```
-![logistic curve](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/logistic_curve_rectangle_integral.png)
 
+![logistic curve](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/logistic_curve.png)
 
 The first graph is our acceleration curve, and the second is an approximate integral of this curve. Since the area underneath a curve is traditionally found by taking infinitesimal rectangles, I modeled this with bars that fits our curve. Now to find the velocity, we simply take the width of each rectangle and multiply it by the height of the function at that point. **note that there are many different ways to numerically calculate integrals using quadrature that I plan to cover in the future, but for now this satisfies our requirements for a basic intuition*
 
@@ -55,6 +54,8 @@ for i in range(accuracy):
 
 print(area)
 ```
+
+![logistic curve](https://raw.githubusercontent.com/chrishorton/chrishorton.github.io/master/images/logistic_curve_rectangle_integral.png)
 
 ```python
 import pandas as pd
